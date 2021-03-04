@@ -1,4 +1,5 @@
-let promise = new Promise((resolve, reject) => {
+const MyPromise = require("./0. mypromise");
+let promise = new MyPromise((resolve, reject) => {
   console.log(1);
   // resolve("success");
   // throw new Error("Error");
