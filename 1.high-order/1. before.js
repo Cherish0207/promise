@@ -16,6 +16,7 @@ function say(...args) {
 }
 // 尽量不要破坏原有的函数，而是对其进行扩展
 // 给某个方法添加一个方法在他执行之前调用
+//  -- AOP面向切片编程 把原来的方法切开，放入自己的逻辑
 Function.prototype.before = function (cb) {
   // args剩余运算符
   // 箭头函数没有 this, 也没有 arguments

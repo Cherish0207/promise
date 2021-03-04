@@ -1,3 +1,4 @@
+// 面向切片 先存到数组里，再依次执行
 let fs = require("fs");
 let school = {};
 let event = {
