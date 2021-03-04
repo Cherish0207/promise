@@ -1,12 +1,26 @@
 let fs = require("fs");
 
-// 回调地狱+错误处理很麻烦
-fs.readFile("./name.txt", "utf8", function (err, name) {
-  if (err) {
-  }
-  fs.readFile(name, "utf8", function (err, data) {
-    if (err) {
-    }
-    console.log(data);
+function read(filename) {
+  return new Promise((resolve, reject) => {
+    fs.readFile(filename, "utf8", function (err, data) {
+      if (err) return reject(err);
+      resolve(data);
+    });
   });
-});
+}
+read("./name.txt").then(
+  (data) => {
+    read(data).then(
+      (data) => {
+        console.log(`data:${data}`);
+      },
+      (err) => {
+        console.log(`err:${err}`);
+      }
+    );
+    console.log(`data:${data}`);
+  },
+  (err) => {
+    console.log(`err:${err}`);
+  }
+);
