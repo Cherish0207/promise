@@ -12,6 +12,8 @@ function after(times, callback) {
     }
   };
 }
+// err放在第一个参数，
+// 这种语法叫做 error first -- 错误第一，因为异步方法无法通过try、 catchi捕获异常
 fs.readFile("./name.txt", "utf8", function (err, data) {
   school.name = data;
   cb();
