@@ -1,7 +1,6 @@
-// 多个异步请求同时获取最终结果
+
 let fs = require("fs");
 let school = {};
-// 把参数变量内置到了函数中 -- 闭包函数
 const cb = after(2, () => {
   console.log(school);
 });
