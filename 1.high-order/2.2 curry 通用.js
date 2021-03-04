@@ -7,11 +7,11 @@
 const currying = (fn, arr = []) => {
   let len = fn.length; // 获取函数的参数个数
   return function (...args) {
-    arr = [...arr, ...args];
-    if (arr.length >= len) {
-      return fn(...arr);
+    let concatValue = [...arr, ...args];
+    if (concatValue.length >= len) {
+      return fn(...concatValue);
     } else {
-      return currying(fn, arr); // 递归不停的产生函数
+      return currying(fn, concatValue); // 递归不停的产生函数
     }
   };
 };
@@ -21,7 +21,7 @@ function isType(type, value) {
 }
 let isArray = currying(isType)("Array");
 let isString = currying(isType)("String");
-console.log(isArray("123"));
 console.log(isArray([]));
+console.log(isArray("123"));
 // console.log(isString([]));
 // console.log(isString("123"));
