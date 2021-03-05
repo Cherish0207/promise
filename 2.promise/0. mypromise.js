@@ -12,6 +12,9 @@ class Mypromise {
     this.onResolvedCallbacks = [];
     this.onRejectedCallbacks = [];
     let resolve = (value) => {
+      if (value instanceof Mypromise) {
+        return value.then(resolve, reject); // 递归解析 resolve中的参数,直到这个值是普通值
+      }
       if (this.status === this.states.PENDING) {
         this.value = value;
         this.status = this.states.RESOVED;

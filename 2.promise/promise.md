@@ -37,10 +37,12 @@ promise es6 内部已经实现了。ie 不支持,需要 polyfill(es6-promise)
 
 没法自己实现微任务，可以借助一些方法 除非是 v8 帮你提供的
 测试写的库是否符合规范 github.com/promises-aplus/promises-tests
-规范中值规定了then的写法，没有finally和catch
+规范中值规定了 then 的写法，没有 finally 和 catch
+
 ```bash
 npm i promises-aplus-tests -g
 promises-aplus-tests ./2.promise/promise.js
 ```
 
-git commit -m "3.6 规范测试"
+- resolve/reject 静态方法不是 promisea+规范里的
+- 二者区别在于 resolve 会等待里面的 promise 执行完毕 reject 不会
