@@ -15,15 +15,15 @@ class Mypromise {
       if (this.status === this.states.PENDING) {
         this.value = value;
         this.status = this.states.RESOVED;
+        this.onResolvedCallbacks.forEach((cb) => cb());
       }
-      this.onResolvedCallbacks.forEach((cb) => cb());
     };
     let reject = (reason) => {
       if (this.status === this.states.PENDING) {
         this.reason = reason;
         this.status = this.states.REJECTED;
+        this.onRejectedCallbacks.forEach((cb) => cb());
       }
-      this.onRejectedCallbacks.forEach((cb) => cb());
     };
     try {
       exector(resolve, reject);
