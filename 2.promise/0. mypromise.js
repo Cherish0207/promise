@@ -87,11 +87,21 @@ class Mypromise {
   catch(errCallback) {
     return this.then(null, errCallback);
   }
+  static resolve(data) {
+    return new Mypromise((resolve, reject) => {
+      resolve(data);
+    });
+  }
+  static reject(data) {
+    return new Mypromise((resolve, reject) => {
+      reject(data);
+    });
+  }
 }
 // promise 延迟对象
 Mypromise.defer = Mypromise.deferred = function () {
   let dfd = {};
-  dfd.promise = new Promise((resolve, reject) => {
+  dfd.promise = new Mypromise((resolve, reject) => {
     dfd.resolve = resolve;
     dfd.reject = reject;
   });
