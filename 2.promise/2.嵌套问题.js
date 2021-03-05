@@ -8,19 +8,21 @@ function read(filename) {
     });
   });
 }
-read("./name.txt").then(
-  (data) => {
-    read(data).then(
-      (data) => {
-        console.log(`data:${data}`);
-      },
-      (err) => {
-        console.log(`err:${err}`);
-      }
-    );
-    console.log(`data:${data}`);
-  },
-  (err) => {
-    console.log(`err:${err}`);
-  }
-);
+read("./name.txt")
+  .then(
+    (data) => {
+      return read(data);
+      // return read(data+1);
+    },
+    (err) => {
+      return err;
+    }
+  )
+  .then(
+    (data) => {
+      console.log(`收到data：${data}`);
+    },
+    (err) => {
+      console.log(`收到err：${err}`);
+    }
+  );
