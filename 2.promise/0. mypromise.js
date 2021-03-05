@@ -32,6 +32,7 @@ class Mypromise {
     }
   }
   then(onFulfilled, onRejected) {
+    onFulfilled = typeof onFulfilled === "function" ? onFulfilled : (v) => v;
     let promise2 = new Mypromise((resolve, reject) => {
       if (this.status === this.states.RESOVED) {
         // 此时如果执行onFulfilled的时候报了错，会被上面的try catch捕获到
