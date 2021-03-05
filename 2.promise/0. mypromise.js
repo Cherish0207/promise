@@ -1,3 +1,4 @@
+const resolvePromise = require("./1. resolvePromise");
 class Mypromise {
   constructor(exector) {
     this.states = {
@@ -35,28 +36,46 @@ class Mypromise {
       if (this.status === this.states.RESOVED) {
         // 此时如果执行onFulfilled的时候报了错，会被上面的try catch捕获到
         // 但是这里无法获取到promise2 -->setTimeout
-        let x = onFulfilled(this.value);
-        resolvePromise(promise2, x, resolve, reject);
+        // 使用 setTimeout 后 上面到try catch 又无法捕获到错误了 --> 加try catch
+        setTimeout(() => {
+          try {
+            let x = onFulfilled(this.value);
+            resolvePromise(promise2, x, resolve, reject);
+          } catch (e) {
+            reject(e);
+          }
+        });
       } else if (this.status === this.states.REJECTED) {
-        let x = onRejected(this.reason);
-        resolvePromise(promise2, x, resolve, reject);
+        setTimeout(() => {
+          try {
+            let x = onRejected(this.reason);
+            resolvePromise(promise2, x, resolve, reject);
+          } catch (e) {
+            reject(e);
+          }
+        });
       } else if (this.status === this.states.PENDING) {
         // 面向切片：用函数包裹一下方便扩展
         // 依次执行then方法的成功/失败回调（可能有多个）
         this.onResolvedCallbacks.push(() => {
-          let x = onFulfilled(this.value);
-          resolvePromise(promise2, x, resolve, reject);
+          try {
+            let x = onFulfilled(this.value);
+            resolvePromise(promise2, x, resolve, reject);
+          } catch (e) {
+            reject(e);
+          }
         });
         this.onRejectedCallbacks.push(() => {
-          let x = onRejected(this.reason);
-          resolvePromise(promise2, x, resolve, reject);
+          try {
+            let x = onRejected(this.reason);
+            resolvePromise(promise2, x, resolve, reject);
+          } catch (e) {
+            reject(e);
+          }
         });
       }
     });
     return promise2;
   }
 }
-let resolvePromise = (promise2, x, resolve, reject) => {
-  console.log(promise2, x, resolve, reject);
-};
 module.exports = Mypromise;
