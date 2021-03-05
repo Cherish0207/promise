@@ -34,3 +34,13 @@ promise es6 内部已经实现了。ie 不支持,需要 polyfill(es6-promise)
    ** 错误处理 --> 如果离自己最近的 then 没有错误处理（没有写错误处理函数）会向下找 **
    如果返回的是普通值 （包含除了 promise/出错的所有其他情况：没有 return/undefined ） ---> 不管是成功还是失败的回调返回值，都会传递到下一次的成功中, 3.每次执行完 promise.then 方法后返回的,并不是实例本身，而是一个“新的 promise" ( promise-旦成功或者失败就不能修改状态)
    catch 不属于规范里的
+
+没法自己实现微任务，可以借助一些方法 除非是 v8 帮你提供的
+测试写的库是否符合规范 github.com/promises-aplus/promises-tests
+规范中值规定了then的写法，没有finally和catch
+```bash
+npm i promises-aplus-tests -g
+promises-aplus-tests ./2.promise/promise.js
+```
+
+git commit -m "3.6 规范测试"

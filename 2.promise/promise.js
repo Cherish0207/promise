@@ -85,7 +85,6 @@ class Mypromise {
     return promise2;
   }
 }
-// promise 延迟对象
 Mypromise.defer = Mypromise.deferred = function () {
   let dfd = {};
   dfd.promise = new Promise((resolve, reject) => {
