@@ -9,6 +9,7 @@ let promise2 = p.then((data) => {
         new Mypromise((resolve, reject) => {
           setTimeout(() => {
             resolve(2000);
+            reject(11);
           });
         })
       );

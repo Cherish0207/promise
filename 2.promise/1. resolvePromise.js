@@ -7,6 +7,8 @@ module.exports = resolvePromise = (promise2, x, resolve, reject) => {
       new TypeError("Chaining cycle detected for promise #<Promise>")
     );
   }
+  // 防止失败了再次进入成功/成功了再次进入失败，普通值不需处理
+  let called;
   // 后续的条件要严格判断保证代能和别的库一起使用;
   if ((typeof x === "object" && x != null) || typeof x === "function") {
     try {
@@ -17,22 +19,28 @@ module.exports = resolvePromise = (promise2, x, resolve, reject) => {
         then.call(
           x,
           (y) => {
+            if (called) return;
+            called = true;
             // 根据 promise的状态决定是成功还是失败
             resolvePromise(promise2, y, resolve, reject); // 递归解析的过程
           },
           (e) => {
+            if (called) return;
+            called = true;
             reject(e);
           }
         );
       } else {
-        // {then: '12'} 
+        // {then: '12'}
         // 普通值
         resolve(x);
       }
     } catch (e) {
+      if (called) return;
+      called = true;
       reject(e);
     }
-  }else {
+  } else {
     // 普通值
     resolve(x);
   }
