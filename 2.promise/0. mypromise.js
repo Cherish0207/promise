@@ -31,23 +31,29 @@ class Mypromise {
     }
   }
   then(onFulfilled, onRejected) {
-    if (this.status === this.states.RESOVED) {
-      onFulfilled(this.value);
-    } else if (this.status === this.states.REJECTED) {
-      onRejected(this.reason);
-    } else if (this.status === this.states.PENDING) {
-      // 面向切片：用函数包裹一下方便扩展
-      // 依次执行then方法的成功/失败回调（可能有多个）
-      this.onResolvedCallbacks.push(() => {
-        // todos...
-        onFulfilled(this.value);
-      });
-      this.onRejectedCallbacks.push(() => {
-        // todos...
-        console.log(this.status);
-        onRejected(this.reason);
-      });
-    }
+    let promise2 = new Mypromise((resolve, reject) => {
+      if (this.status === this.states.RESOVED) {
+        let x = onFulfilled(this.value);
+        resolve(x);
+      } else if (this.status === this.states.REJECTED) {
+        let x = onRejected(this.reason);
+        resolve(x);
+      } else if (this.status === this.states.PENDING) {
+        // 面向切片：用函数包裹一下方便扩展
+        // 依次执行then方法的成功/失败回调（可能有多个）
+        this.onResolvedCallbacks.push(() => {
+          // todos...
+          let x = onFulfilled(this.value);
+          resolve(x);
+        });
+        this.onRejectedCallbacks.push(() => {
+          // todos...
+          let x = onRejected(this.reason);
+          resolve(x);
+        });
+      }
+    });
+    return promise2;
   }
 }
 module.exports = Mypromise;
