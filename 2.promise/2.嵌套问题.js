@@ -6,8 +6,8 @@ function read(filename) {
     //   if (err) return reject(err);
     //   resolve(data);
     // });
-    // resolve("first then");
-    reject("err");
+    resolve("first then");
+    // reject("err")
   });
 }
 // 调用 p1 的 resolve("first then")
@@ -17,7 +17,12 @@ function read(filename) {
 let p1 = read("./name.txt");
 let p2 = p1.then(
   () => {
-    return 1;
+    throw new Error("fdsafsa");
+    // return new Promise((resolve, reject) => {
+    //   setTimeout(() => {
+    //     resolve("ok");
+    //   });
+    // });
   },
   (err) => {
     console.log(err);
