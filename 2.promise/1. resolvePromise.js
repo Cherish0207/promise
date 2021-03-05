@@ -18,7 +18,7 @@ module.exports = resolvePromise = (promise2, x, resolve, reject) => {
           x,
           (y) => {
             // 根据 promise的状态决定是成功还是失败
-            resolve(y);
+            resolvePromise(promise2, y, resolve, reject); // 递归解析的过程
           },
           (e) => {
             reject(e);
