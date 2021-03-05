@@ -3,12 +3,8 @@ let p = new Mypromise((resolve, reject) => {
   // resolve(1);
   reject(11);
 });
-p.then(null, (data) => {
-  throw data;
-})
-  .then(null, (data) => {
-    throw data;
-  })
+p.then()
+  .then()
   .then(
     (data) => {
       console.log(data);
