@@ -84,6 +84,9 @@ class Mypromise {
     });
     return promise2;
   }
+  catch(errCallback) {
+    return this.then(null, errCallback);
+  }
 }
 // promise 延迟对象
 Mypromise.defer = Mypromise.deferred = function () {
