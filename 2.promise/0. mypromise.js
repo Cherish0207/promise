@@ -90,6 +90,21 @@ class Mypromise {
   catch(errCallback) {
     return this.then(null, errCallback);
   }
+  finally(callback) {
+    return this.then(
+      (value) => {
+        return Mypromise.resolve(callback()).then(() => {
+          return value
+        });
+      },
+      (err) => {
+        return Mypromise.resolve(callback()).then(() => {
+          console.log("err");
+          throw err;
+        });
+      }
+    );
+  }
   static resolve(data) {
     return new Mypromise((resolve, reject) => {
       resolve(data);

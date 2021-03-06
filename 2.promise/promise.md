@@ -47,4 +47,4 @@ promises-aplus-tests ./2.promise/promise.js
 - resolve/reject 静态方法不是 promisea+规范里的
 - 二者区别在于 resolve 会等待里面的 promise 执行完毕 reject 不会
 
-finally es10 要求node版本10+
+finally es10 要求 node 版本 10+
