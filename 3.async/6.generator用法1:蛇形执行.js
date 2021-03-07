@@ -1,4 +1,5 @@
 // generator 在学 saga 的时候会讲generator的应用
+// saga不能用async，它要有暂停的功能
 // generator 基本应用 --- 后面的async await是主要基于generator
 // co库 的原理
 
