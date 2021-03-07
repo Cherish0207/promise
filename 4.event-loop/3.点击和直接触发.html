@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="button">button</div>
+    <script>
+      button.addEventListener("click", () => {
+        console.log("addEventListener1");
+        Promise.resolve().then(() => {
+          console.log(1);
+        });
+      });
+      button.addEventListener("click", () => {
+        console.log("addEventListener2");
+        Promise.resolve().then(() => {
+          console.log(2);
+        });
+      });
+      button.click(); // 直接触发--让两个函数立即执行
+
+      // 点击--按照事件环的机制执行
+
+    </script>
+  </body>
+</html>
