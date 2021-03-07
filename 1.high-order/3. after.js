@@ -2,6 +2,8 @@
 let fs = require("fs");
 let school = {};
 // 把参数变量内置到了函数中 -- 闭包函数
+
+// 不关心/不保证顺序 不能根据顺序拿到返回结果
 const cb = after(2, () => {
   console.log(school);
 });
