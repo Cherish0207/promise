@@ -1,3 +1,21 @@
+## promise 课程复习总结
+
+1. 总结常见的高阶函数应用场景
+
+- 参数和返回值都是函数:before 函数
+- 返回值是函数:curry--isType 延伸:实现一个通用的函数柯里化
+
+## promise 课程内容
+
+1. 掌握高阶函数的使用,并使用其解决异步问题
+2. 掌握发布订阅模式与观察者模式
+3. 掌握 promise 核心应用,并用其解决异步编程问题
+4. 实现一个完整符合 promise A+规范的 promise)库
+5. 企业真实面试中,怎么考察 promise?
+6. 实现 promise 中常用的方法 all, race、 finally
+7. 掌握 generator 的使用以及 CO 库的原理
+8. 异步终极解决方案 async+await 的原理
+
 ## 1.high-order
 
 什么是高阶函数: 满足两条中的任意一条即可
