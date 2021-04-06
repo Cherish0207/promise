@@ -33,3 +33,6 @@
 
 vue/react/angular 框架包括 node 里，经常会使用高阶函数，一层套一层，能够解决很多问题
 而且用高阶函数的方式可以演变出很多设计模式
+
+
+## [15道ES6 Promise实战练习题，助你快速理解Promise](https://mp.weixin.qq.com/s/tetfPizYwMtr-XlBRfZAQA)
